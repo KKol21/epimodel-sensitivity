@@ -38,7 +38,6 @@ implementation (assuming the required inputs are available) is as follows:
 .. code-block:: python
 
 
-    import torch
     from emsa.generics import SimulationGeneric
 
     data = ...

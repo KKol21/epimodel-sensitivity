@@ -35,7 +35,7 @@ which will contain these as member variables, allowing us to access them using t
 
 To achieve this, you can either:
 
-1. Create a class called e.g. "DataLoader", inheriting from :ref:`DataLoaderBase <dataloader_section>`
+1. Create a `DataLoader` class inheriting from :ref:`DataLoaderBase <dataloader_section>`
 ******************************************************************************************************
 Example: DataLoader class with separate methods for loading different parts of model data
 
