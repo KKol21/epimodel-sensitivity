@@ -118,18 +118,6 @@ class SimulationBase(ABC):
         else:
             return f"{key}-{variable_params[key]}"
 
-    def get_beta_from_r0(self, base_r0):
-        from emsa.model import R0Generator
-
-        r0generator = R0Generator(self.data, self.model_struct)
-        if isinstance(base_r0, tuple):
-            base_r0 = base_r0[0]
-        return base_r0 / r0generator.get_eig_val(
-            contact_mtx=self.cm,
-            susceptibles=self.susceptibles.reshape(1, -1),
-            population=self.population,
-        )
-
     def calculate_prcc(self, filename: str, target: str) -> None:
         """
 

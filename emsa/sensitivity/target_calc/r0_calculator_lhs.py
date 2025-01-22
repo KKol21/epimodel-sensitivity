@@ -51,7 +51,7 @@ class R0CalculatorLHS:
             r0gen.params.update(row_dict)
             r0 = sim_object.params["beta"] * r0gen.get_eig_val(
                 contact_mtx=sim_object.cm,
-                susceptibles=sim_object.susceptibles.reshape(1, -1),
+                susceptibles=sim_object.susceptibles.flatten(),
                 population=sim_object.population,
             )
             r0s.append(r0)

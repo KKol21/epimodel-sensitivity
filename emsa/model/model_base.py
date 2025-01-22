@@ -176,6 +176,18 @@ class EpidemicModelBase(ABC):
             dim=0,
         ).sum(dim=0)
 
+    def get_beta_from_r0(self, base_r0, susceptibles):
+        from emsa.model import R0Generator
+
+        r0generator = R0Generator(self.data, self.model_struct)
+        if isinstance(base_r0, tuple):
+            base_r0 = base_r0[0]
+        return base_r0 / r0generator.get_eig_val(
+            contact_mtx=self.data.cm,
+            susceptibles=susceptibles.flatten(),
+            population=self.population,
+        )
+
 
 def get_substates(n_substates, comp_name):
     """

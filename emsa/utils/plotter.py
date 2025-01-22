@@ -8,6 +8,7 @@ from matplotlib.tri import Triangulation
 
 
 def visualize_transmission_graph(state_data, trans_data, tms_rules):
+    # LEGACY
     plt.figure(figsize=(10, 8))
     G = nx.DiGraph()
 
@@ -59,7 +60,7 @@ def visualize_transmission_graph(state_data, trans_data, tms_rules):
     for rule in tms_rules:
         source = get_node_label(rule["source"])
         target = get_node_label(rule["target"])
-        G.add_edge(source, target, param="beta")  # TODO: susc mul, inf mul
+        G.add_edge(source, target, param="beta")
         for actor, param in rule["actors-params"].items():
             actor = get_node_label(actor)
             if param is not None:
