@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name="emsa",
-    version="1.0.1",
+    version="1.0.2",
     author="Kolos Kovács",
     author_email="kovkol21@gmail.com",
     description="Efficient sensitivity analysis and evaluation of epidemiological models",
