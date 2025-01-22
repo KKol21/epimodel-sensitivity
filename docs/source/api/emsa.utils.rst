@@ -1,6 +1,10 @@
 Utilities
 ==================
 
+
+.. _simulation_section::
+
+
 Simulation base
 ----------------------------
 
@@ -9,7 +13,11 @@ Simulation base
    :undoc-members:
    :show-inheritance:
 
-Dataloader
+
+.. _dataloader_section:
+
+
+DataLoaderBase
 ----------------------------
 
 .. automodule:: emsa.utils.dataloader

@@ -1,12 +1,12 @@
 import torch
 
-from emsa.model.matrix_generator import (
+from .matrix_generator import (
     generate_transition_matrix,
     get_susc_mul,
     get_inf_mul,
     get_param_mul,
 )
-from emsa.model.model_base import get_substates
+from . import get_substates
 from typing import Dict, Any
 
 
@@ -156,7 +156,8 @@ class R0Generator:
             for actor in tms["actors-params"]:
                 rel_inf = self.params.get(tms["actors-params"][actor], 1)
                 for substate in get_substates(
-                    n_substates=self.state_data[actor].get("n_substates", 1), comp_name=actor
+                    n_substates=self.state_data[actor].get("n_substates", 1),
+                    comp_name=actor,
                 ):
                     substate_slice = slice(i[substate], s_mtx, n_states)
                     target_slice = slice(i[f"{tms['target']}_0"], s_mtx, n_states)

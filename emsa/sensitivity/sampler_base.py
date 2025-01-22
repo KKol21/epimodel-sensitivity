@@ -1,12 +1,11 @@
 import os
-import time
 from abc import ABC, abstractmethod
 
 import numpy as np
 from smt.sampling_methods import LHS
 
-from emsa.sensitivity.sensitivity_model_base import get_params_col_idx
-from emsa.sensitivity.target_calc.output_generator import OutputGenerator
+from .sensitivity_model_base import get_params_col_idx
+from .target_calc import OutputGenerator
 
 
 class SamplerBase(ABC):
@@ -39,7 +38,7 @@ class SamplerBase(ABC):
         self.n_samples = sim_object.n_samples
         self.batch_size = sim_object.batch_size
 
-        if (spb := self.sampled_params_boundaries) is not None:
+        if spb := self.sampled_params_boundaries:
             self.lhs_bounds_dict = {param: np.array(spb[param]) for param in spb}
             self.pci = get_params_col_idx(spb)
 
@@ -96,8 +95,6 @@ class SamplerBase(ABC):
         sim_outputs = output_generator.get_output(lhs_table=lhs_table)
         if sim_outputs == {}:
             raise Exception("No output was produced by OutputGenerator instance!")
-
-        time.sleep(0.3)
 
         # Save samples, target values
         filename = self.sim_object.get_filename(self.variable_params)

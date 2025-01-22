@@ -10,7 +10,7 @@ class SamplerContact(SamplerBase):
         self.lhs_bounds_dict = {
             "contacts": np.array(
                 [
-                    np.full(fill_value=0.1, shape=self.sim_object.upper_tri_size),
+                    np.full(fill_value=0.2, shape=self.sim_object.upper_tri_size),
                     np.full(fill_value=1, shape=self.sim_object.upper_tri_size),
                 ]
             ),

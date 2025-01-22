@@ -148,6 +148,27 @@
     ],
     "description": "Probability of asymptomatic course"
   },
+  "susc": {
+    "value": [
+      0.5,
+      0.5,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "description": "Dummy value for testing susceptibility"
+  },
   "t_start": {
     "value": 0,
     "description": "Start of vaccination campaign"

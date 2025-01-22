@@ -2,7 +2,7 @@ from abc import ABC
 
 import torch
 
-from emsa.model.model_base import EpidemicModelBase
+from emsa.model import EpidemicModelBase
 
 
 def get_params_col_idx(sampled_params_boundaries: dict):

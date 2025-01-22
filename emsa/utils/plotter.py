@@ -6,10 +6,6 @@ from matplotlib import pyplot as plt, colors
 from matplotlib.cm import ScalarMappable
 from matplotlib.tri import Triangulation
 
-from emsa_examples.contact_sensitivity.sensitivity_model_contact import (
-    get_rectangular_matrix_from_upper_triu,
-)
-
 
 def visualize_transmission_graph(state_data, trans_data, tms_rules):
     plt.figure(figsize=(10, 8))
@@ -200,6 +196,10 @@ def construct_triangle_grid(n_age):
 
 
 def get_prcc_and_p_values(n_age, prcc_vector, p_values):
+    from emsa_examples.contact_sensitivity.sensitivity_model_contact import (
+        get_rectangular_matrix_from_upper_triu,
+    )
+
     prcc_mtx = np.array(
         get_rectangular_matrix_from_upper_triu(rvector=prcc_vector, matrix_size=n_age)
     )

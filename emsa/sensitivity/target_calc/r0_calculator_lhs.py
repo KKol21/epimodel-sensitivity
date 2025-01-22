@@ -1,12 +1,12 @@
 import torch
 from tqdm import tqdm
 
-from emsa.model.r0_calculator import R0Generator
-from emsa.sensitivity.sensitivity_model_base import get_params_col_idx, get_lhs_dict
-from emsa.utils.simulation_base import SimulationBase
+from emsa.model import R0Generator
+from emsa.sensitivity import get_params_col_idx, get_lhs_dict
+from emsa.utils import SimulationBase
 
 
-class R0Calculator:
+class R0CalculatorLHS:
     """
     R0Calculator class for calculating the basic reproduction number (R0) for epidemic models.
 

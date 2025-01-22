@@ -1,8 +1,8 @@
 import numpy as np
 import torch
 
-from emsa.model.r0_calculator import R0Generator
-from emsa.sensitivity.sensitivity_model_base import SensitivityModelBase
+from emsa.model import R0Generator
+from emsa.sensitivity import SensitivityModelBase
 
 
 class ContactModel(SensitivityModelBase):
@@ -33,7 +33,7 @@ class ContactModel(SensitivityModelBase):
 
     def _get_T_from_contacts(self, cm_samples: torch.Tensor, betas: torch.Tensor):
         T = torch.zeros((cm_samples.size(0), self.s_mtx, self.s_mtx)).to(self.device)
-        for idx, (beta, cm) in enumerate(zip(cm_samples, betas)):
+        for idx, (cm, beta) in enumerate(zip(cm_samples, betas)):
             self.matrix_generator.ps.update({"beta": beta})
             T[idx, :, :] = self.matrix_generator.get_T(cm=cm)
         return T
@@ -56,18 +56,15 @@ class ContactModel(SensitivityModelBase):
             (lhs_table.shape[0], self.sim_object.n_age, self.sim_object.n_age)
         )
         for idx, sample in enumerate(lhs_table):
-            contact_sim[idx, :, :] = get_contact_matrix_from_upper_triu(
+            ratio_mtx = get_ratio_matrix_from_upper_triu(
                 rvector=sample, age_vector=self.sim_object.population.flatten()
             )
+            contact_sim[idx, :, :] = ratio_mtx * self.sim_object.cm
         return contact_sim
 
 
-def get_contact_matrix_from_upper_triu(rvector, age_vector):
-    new = (
-        get_rectangular_matrix_from_upper_triu(rvector=rvector, matrix_size=age_vector.size(0))
-        / age_vector
-    )
-    return new
+def get_ratio_matrix_from_upper_triu(rvector, age_vector):
+    return get_rectangular_matrix_from_upper_triu(rvector=rvector, matrix_size=age_vector.size(0))
 
 
 def get_rectangular_matrix_from_upper_triu(rvector, matrix_size):

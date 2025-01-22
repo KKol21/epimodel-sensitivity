@@ -34,7 +34,9 @@ class SimulationContact(SimulationBase):
             PROJECT_PATH, "emsa_examples/contact_sensitivity/configs/model_struct.json"
         )
         super().__init__(
-            data=data, model_struct_path=model_struct_path, sampling_config_path=config_path
+            data=data,
+            model_struct_path=model_struct_path,
+            sampling_config_path=config_path,
         )
 
         self.upper_tri_size = int((self.n_age + 1) * self.n_age / 2)

@@ -7,10 +7,8 @@ import numpy as np
 from scipy import stats as ss
 from torch import atleast_2d
 
-from emsa.utils.dataloader import PROJECT_PATH
-from emsa.model.r0_calculator import R0Generator
-from emsa.utils.plotter import generate_tornado_plot
-from emsa.sensitivity.prcc import get_prcc_values
+from .dataloader import PROJECT_PATH
+from .plotter import generate_tornado_plot
 
 
 class SimulationBase(ABC):
@@ -53,7 +51,7 @@ class SimulationBase(ABC):
         self.n_samples = config["n_samples"]
         self.batch_size = config["batch_size"]
 
-        self.test = config.get("test") or True
+        self.test = config.get("is_static") or True
         self.init_vals = config["init_vals"]
 
         self.target_calc_config = {
@@ -121,6 +119,8 @@ class SimulationBase(ABC):
             return f"{key}-{variable_params[key]}"
 
     def get_beta_from_r0(self, base_r0):
+        from emsa.model import R0Generator
+
         r0generator = R0Generator(self.data, self.model_struct)
         if isinstance(base_r0, tuple):
             base_r0 = base_r0[0]
@@ -139,6 +139,8 @@ class SimulationBase(ABC):
         the PRCC values. The PRCC values are saved in separate files in the 'sens_data_"folder_name"/prcc' directory.
 
         """
+        from emsa.sensitivity import get_prcc_values
+
         folder_name = self.folder_name
         os.makedirs(os.path.join(folder_name, "prcc"), exist_ok=True)
         lhs_path = os.path.join(folder_name, f"lhs/lhs_{filename}.csv")

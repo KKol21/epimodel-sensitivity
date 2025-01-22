@@ -5,8 +5,8 @@ from types import SimpleNamespace
 import pytest
 import torch
 
-from emsa.utils.dataloader import PROJECT_PATH
-from emsa.model.epidemic_model import EpidemicModel
+from emsa.model import EpidemicModel
+from emsa.utils import PROJECT_PATH
 from emsa_examples.utils.dataloader_16_ag import DataLoader
 from tests.mock_models import (
     MockModelBase,

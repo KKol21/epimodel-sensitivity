@@ -35,7 +35,6 @@ class DataLoader(DataLoaderBase):
     def _get_age_data(self):
         wb = xlrd.open_workbook(self._age_data_file)
         sheet = wb.sheet_by_index(0)
-        self.n_age = sheet.nrows
         datalist = torch.Tensor([sheet.row_values(i) for i in range(0, sheet.nrows)])
         wb.unload_sheet(0)
         self.age_data = datalist.to(self.device)

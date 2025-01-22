@@ -46,7 +46,8 @@
         "is": null,
         "ip": null,
         "ia": "inf_a"
-      }
+      },
+      "susc_params": ["susc"]
     }
   ],
   "trans_data": [

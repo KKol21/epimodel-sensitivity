@@ -1,4 +1,4 @@
-from emsa.sensitivity.sampler_base import SamplerBase
+from emsa.sensitivity import SamplerBase
 
 
 class GenericSampler(SamplerBase):

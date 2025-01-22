@@ -1,4 +1,4 @@
-from emsa.sensitivity.sensitivity_model_base import SensitivityModelBase
+from emsa.sensitivity import SensitivityModelBase
 
 
 class GenericModel(SensitivityModelBase):

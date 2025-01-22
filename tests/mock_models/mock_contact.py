@@ -11,7 +11,7 @@ class MockContactModel(MockModelBase):
 
         # Compute transmission
         infectious_terms = ip + ps["inf_a"] * (ia1 + ia2 + ia3) + (is1 + is2 + is3)
-        transmission = self.get_transmission(infectious_terms)
+        transmission = self.get_transmission(infectious_terms) * ps["susc"]
 
         ds = -s * transmission
         dl1 = s * transmission - 2 * ps["alpha_l"] * l1

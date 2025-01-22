@@ -2,7 +2,7 @@ from typing import List, Any, Dict, Callable
 
 import torch
 
-from emsa.model.model_base import get_substates, EpidemicModelBase
+from . import get_substates, EpidemicModelBase
 
 
 def generate_transition_block(transition_param: float, n_states: int) -> torch.Tensor:
