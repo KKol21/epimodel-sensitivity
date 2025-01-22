@@ -83,6 +83,7 @@ jobs:
     needs: bump
     if: |
       always() &&
+      contains(github.event.head_commit.message, '[publish]') &&
       github.ref == 'refs/heads/main' &&
       !failure() &&
       !cancelled()
